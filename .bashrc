@@ -51,3 +51,13 @@ if [[ -z "$PROMPT_COMMAND" ]]; then
 else
 	export PROMPT_COMMAND="setup_omc_prompt"
 fi
+
+yankcd() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: yankcd <directory_id>"
+        return 1
+    fi
+
+    local dir_id="$1"
+    yank "$dir_id" && cd ~/"$dir_id" || return 1
+}
